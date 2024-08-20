@@ -39,7 +39,7 @@ const RedirectAuthenticatedUser = ({ children }) => {
 
 //redirect authenticated admin users to the admin dashboard
 const RedirectAuthenticatedAdmin = ({ children }) => {
-	const { isAuthenticated, user} = useAuthStore();
+	const { isAuthenticated, user, isAdmin} = useAuthStore();
 
 	if (isAuthenticated && user.isVerified && user.isAdmin) {
 		return <Navigate to='/admin' replace />;

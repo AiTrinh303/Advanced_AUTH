@@ -22,13 +22,7 @@ app.use(cors({origin: 'http://localhost:5173', credentials: true}));// allows us
 app.use(cookieParser());// allows us to store user data in cookies
 
 
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(path.join(__dirname, '/frontend/dist')));
-
-	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
-	});
-}
+if 
 
 // ROUTES
 app.use("/auth", authRoutes);

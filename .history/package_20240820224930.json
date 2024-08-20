@@ -4,10 +4,7 @@
   "description": "",
   "main": "backend/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=development nodemon backend/index.js",
-    "start": "NODE_ENV=production node backend/index.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "test": "echo \"Error: no test specified\" && exit 1",nodemon backend/index.js"
   },
   "keywords": [],
   "author": "",
