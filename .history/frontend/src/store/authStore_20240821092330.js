@@ -3,6 +3,7 @@ import axios from "axios";
 
 //API_URL is different in development and production
 
+
 const API_URL = import.meta.env.MODE === "development" ? "http://localhost:5000/auth" : "/auth";
 
 // Send cookies with every request

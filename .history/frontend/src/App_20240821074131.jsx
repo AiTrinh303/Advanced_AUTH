@@ -37,21 +37,28 @@ const RedirectAuthenticatedUser = ({ children }) => {
 	return children;
 };
 
+// //redirect authenticated admin users to the admin dashboard
+// const RedirectAuthenticatedAdmin = ({ children }) => {
+// 	const { isAuthenticated, user} = useAuthStore();
 
+// 	if (isAuthenticated && user.isVerified && user.isAdmin) {
+// 		return <Navigate to='/admin' replace />;
+// 	}
+
+// 	return children;
+// };
 
 
 function App() {
 
-	const { isCheckingAuth, checkAuth, isCheckingAdmin} = useAuthStore();
+	const { isCheckingAuth, checkAuth} = useAuthStore();
 
 	useEffect(() => {
+	 checkAuth();
 	
-			checkAuth();
-		
-	
-			}, [checkAuth]);
+	}, [checkAuth]);
 
-	if (isCheckingAuth || isCheckingAdmin) return <LoadingSpinner />;
+	if (isCheckingAuth) return <LoadingSpinner />;
 
   return (
     <Routes>
@@ -65,7 +72,14 @@ function App() {
 					}
 		/>
 
-	
+		{/* <Route 
+			path="/admin" 
+			element={
+						<RedirectAuthenticatedUser>
+							<AdminDashboardPage />
+						</RedirectAuthenticatedUser>
+					} 
+        />			 */}
       		
         <Route 
           path="/signup" 

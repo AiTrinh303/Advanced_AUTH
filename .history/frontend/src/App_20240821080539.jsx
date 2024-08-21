@@ -11,47 +11,47 @@ import { useEffect } from "react";
 import LoadingSpinner from "./components/LoadingSpinner";
 // import AdminDashboardPage from "./pages/AdminDashboardPage";
 
-// protect routes that require authentication
-const ProtectedRoute = ({ children }) => {
-	const { isAuthenticated, user } = useAuthStore();
+// // protect routes that require authentication
+// const ProtectedRoute = ({ children }) => {
+// 	const { isAuthenticated, user } = useAuthStore();
 
-	if (!isAuthenticated) {
-		return <Navigate to='/login' replace />;
-	}
+// 	if (!isAuthenticated) {
+// 		return <Navigate to='/login' replace />;
+// 	}
 
-	if (!user.isVerified) {
-		return <Navigate to='/verify-email' replace />;
-	}
+// 	if (!user.isVerified) {
+// 		return <Navigate to='/verify-email' replace />;
+// 	}
 
-	return children;
-};
+// 	return children;
+// };
 
-// redirect authenticated users to the home page
-const RedirectAuthenticatedUser = ({ children }) => {
-	const { isAuthenticated, user} = useAuthStore();
+// // redirect authenticated users to the home page
+// const RedirectAuthenticatedUser = ({ children }) => {
+// 	const { isAuthenticated, user} = useAuthStore();
 
-	if (isAuthenticated && user.isVerified) {
-		return <Navigate to='/' replace />;
-	}
+// 	if (isAuthenticated && user.isVerified) {
+// 		return <Navigate to='/' replace />;
+// 	}
 
-	return children;
-};
+// 	return children;
+// };
 
 
 
 
 function App() {
 
-	const { isCheckingAuth, checkAuth, isCheckingAdmin} = useAuthStore();
+	const { isCheckingAuth, checkAuth, isAuthenticated, user} = useAuthStore();
 
 	useEffect(() => {
-	
-			checkAuth();
-		
-	
-			}, [checkAuth]);
+	 checkAuth();	
+	}, [checkAuth]);
 
-	if (isCheckingAuth || isCheckingAdmin) return <LoadingSpinner />;
+	if (isCheckingAuth) return <LoadingSpinner />;
+
+	console.log(isAuthenticated);
+	console.log(user);
 
   return (
     <Routes>
@@ -59,20 +59,20 @@ function App() {
         <Route 
            	path="/" 
           	element={
-						<ProtectedRoute>
+						
 							<DashboardPage />
-						</ProtectedRoute>
+						
 					}
 		/>
 
-	
+
       		
         <Route 
           path="/signup" 
           element={
-						<RedirectAuthenticatedUser>
+					
 							<SignUpPage />
-						</RedirectAuthenticatedUser>
+					
 					} 
         />
 
@@ -84,16 +84,16 @@ function App() {
         <Route 
           path="/login" 
           element={
-						<RedirectAuthenticatedUser>
+						
 							<LoginPage />
-						</RedirectAuthenticatedUser>
+						
 					}
         />
 		
         <Route 
           path="/forgot-password" 
           element={
-						<RedirectAuthenticatedUser>
+						
 							<ForgotPasswordPage />
 						</RedirectAuthenticatedUser>
 					} 

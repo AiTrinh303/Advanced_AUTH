@@ -42,16 +42,16 @@ const RedirectAuthenticatedUser = ({ children }) => {
 
 function App() {
 
-	const { isCheckingAuth, checkAuth, isCheckingAdmin} = useAuthStore();
+	const { isCheckingAuth, checkAuth, isAuthenticated, user} = useAuthStore();
 
 	useEffect(() => {
-	
-			checkAuth();
-		
-	
-			}, [checkAuth]);
+	 checkAuth();	
+	}, [checkAuth]);
 
-	if (isCheckingAuth || isCheckingAdmin) return <LoadingSpinner />;
+	if (isCheckingAuth) return <LoadingSpinner />;
+
+	console.log(isAuthenticated);
+	console.log(user);
 
   return (
     <Routes>
@@ -65,7 +65,14 @@ function App() {
 					}
 		/>
 
-	
+		{/* <Route 
+			path="/admin" 
+			element={
+						<RedirectAuthenticatedUser>
+							<AdminDashboardPage />
+						</RedirectAuthenticatedUser>
+					} 
+        />			 */}
       		
         <Route 
           path="/signup" 

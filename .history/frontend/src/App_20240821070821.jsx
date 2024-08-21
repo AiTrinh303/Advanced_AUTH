@@ -9,7 +9,7 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import { useAuthStore } from "./store/authStore";
 import { useEffect } from "react";
 import LoadingSpinner from "./components/LoadingSpinner";
-// import AdminDashboardPage from "./pages/AdminDashboardPage";
+import AdminDashboardPage from "./pages/AdminDashboardPage";
 
 // protect routes that require authentication
 const ProtectedRoute = ({ children }) => {
@@ -37,19 +37,30 @@ const RedirectAuthenticatedUser = ({ children }) => {
 	return children;
 };
 
+// //redirect authenticated admin users to the admin dashboard
+// const RedirectAuthenticatedAdmin = ({ children }) => {
+// 	const { isAuthenticated, user} = useAuthStore();
 
+// 	if (isAuthenticated && user.isVerified && user.isAdmin) {
+// 		return <Navigate to='/admin' replace />;
+// 	}
+
+// 	return children;
+// };
 
 
 function App() {
 
-	const { isCheckingAuth, checkAuth, isCheckingAdmin} = useAuthStore();
+	const { isCheckingAuth, checkAuth, isCheckingAdmin, checkAuthAdmin} = useAuthStore();
 
 	useEffect(() => {
+
+	 checkAuth();
 	
-			checkAuth();
-		
-	
-			}, [checkAuth]);
+		};
+
+
+	}, [checkAuth, checkAuthAdmin]);
 
 	if (isCheckingAuth || isCheckingAdmin) return <LoadingSpinner />;
 
@@ -65,7 +76,14 @@ function App() {
 					}
 		/>
 
-	
+		<Route 
+			path="/admin" 
+			element={
+						<RedirectAuthenticatedUser>
+							<AdminDashboardPage />
+						</RedirectAuthenticatedUser>
+					} 
+        />			
       		
         <Route 
           path="/signup" 

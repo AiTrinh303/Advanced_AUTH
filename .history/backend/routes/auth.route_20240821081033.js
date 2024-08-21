@@ -7,7 +7,7 @@ import {
 	forgotPassword,
 	resetPassword,
 	checkAuth,
-
+    checkAuthAndAdmin,
 } from '../controllers/auth.controller.js';
 import { signupValidations, loginValidations } from '../middleware/userValidations.js';
 import { verifyToken } from '../middleware/verifyToken.js';

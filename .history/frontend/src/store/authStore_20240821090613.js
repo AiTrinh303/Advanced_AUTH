@@ -2,6 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 
 //API_URL is different in development and production
+const API_URL = 
 
 const API_URL = import.meta.env.MODE === "development" ? "http://localhost:5000/auth" : "/auth";
 
@@ -12,9 +13,11 @@ axios.defaults.withCredentials = true;
 export const useAuthStore = create((set) => ({
 	user: null,
 	isAuthenticated: false,
+	isAdmin: false,
 	error: null,
 	isLoading: false,
 	isCheckingAuth: true,
+	isCheckingAdmin: true,
 	message: null,
 
 	//SIGNUP
@@ -87,12 +90,32 @@ export const useAuthStore = create((set) => ({
 		} 
 		catch (error) {
 			set({ 
-				error: null, 
+				error: error.response.data.message || null, 
 				isCheckingAuth: false, 
 				isAuthenticated: false 
 			});
 		}
 	},
+
+	// //CHECK AUTHENTICATION AND ADMIN
+	// checkAuthAdmin: async () => {
+	// 	set({ isCheckingAdmin: true, error: null });
+	// 	try {
+	// 		const response = await axios.get(`${API_URL}/check-admin`);
+	// 		set({ 
+	// 			user: response.data.admin, 
+	// 			isAdmin: true, 
+	// 			isCheckingAdmin: false 
+	// 		});
+	// 	}
+	// 	catch (error) {
+	// 		set({ 
+	// 			error: null, 
+	// 			isAdmin: false, 
+	// 			isCheckingAdmin: false 
+	// 		});
+	// 	}
+	// },
 	
 	//FORGOT PASSWORD
 	forgotPassword: async (email) => {

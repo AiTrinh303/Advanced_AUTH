@@ -2,8 +2,9 @@ import { create } from "zustand";
 import axios from "axios";
 
 //API_URL is different in development and production
+const API_URL = "http://localhost:5000/auth"
 
-const API_URL = import.meta.env.MODE === "development" ? "http://localhost:5000/auth" : "/auth";
+// const API_URL = import.meta.env.MODE === "development" ? "http://localhost:5000/auth" : "/auth";
 
 // Send cookies with every request
 axios.defaults.withCredentials = true; 
@@ -12,9 +13,11 @@ axios.defaults.withCredentials = true;
 export const useAuthStore = create((set) => ({
 	user: null,
 	isAuthenticated: false,
+	isAdmin: false,
 	error: null,
 	isLoading: false,
 	isCheckingAuth: true,
+	isCheckingAdmin: true,
 	message: null,
 
 	//SIGNUP
@@ -87,7 +90,7 @@ export const useAuthStore = create((set) => ({
 		} 
 		catch (error) {
 			set({ 
-				error: null, 
+				error: error.response.data.message || null, 
 				isCheckingAuth: false, 
 				isAuthenticated: false 
 			});
