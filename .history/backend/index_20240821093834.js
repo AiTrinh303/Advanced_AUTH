@@ -5,7 +5,7 @@ import 'dotenv/config';
 import connectDB from './db/connectDB.js';
 import errorHandler from './middleware/errorHandler.js';
 import authRoutes from './routes/auth.route.js';
-// import userRoutes from './routes/user.route.js';
+import userRoutes from './routes/user.route.js';
 import path from 'path';
 
 const app = express();
