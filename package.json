@@ -4,7 +4,6 @@
   "description": "",
   "main": "backend/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=development nodemon backend/index.js",
     "start": "NODE_ENV=production node backend/index.js",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
@@ -16,15 +15,22 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.1.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-session": "^1.18.0",
     "express-validator": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
     "mailtrap": "^3.4.0",
     "mongoose": "^8.5.2",
     "nodemailer": "^6.9.14",
+    "passport": "^0.7.0",
+    "passport-facebook": "^3.0.0",
+    "passport-github": "^1.1.0",
+    "passport-github2": "^0.1.12",
+    "passport-google-oauth20": "^2.0.0",
     "path": "^0.12.7"
   },
   "devDependencies": {
