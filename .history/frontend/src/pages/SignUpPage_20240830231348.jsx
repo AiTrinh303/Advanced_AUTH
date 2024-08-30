@@ -5,9 +5,6 @@ import { Loader, LockKeyhole , Mail, User} from "lucide-react";
 import { useAuthStore } from "../store/authStore";
 import Input from "../components/Input";
 import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
-import Google from "../img/google.png";
-import GitHub from "../img/github.png";
-import Facebook from "../img/facebook.png";
 
 const SignUpPage = () => {
 	const [name, setName] = useState("");
@@ -16,7 +13,7 @@ const SignUpPage = () => {
 
 	const navigate = useNavigate();
 
-	const { signup, error, isLoading, google, github, facebook  } = useAuthStore();
+	const { signup, error, isLoading } = useAuthStore();
 
 	const handleSignUp = async (e) => {
 		e.preventDefault();
@@ -113,7 +110,7 @@ const SignUpPage = () => {
 					>
 						<img src={Facebook} alt="facebook" className='w-5 h-5 mr-2' />						
 					</motion.button>			
-				</div>	
+					</div>	
 			</div>
 			<div className='px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center'>
 				<p className='text-sm text-gray-400'>
