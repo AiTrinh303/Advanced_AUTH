@@ -55,32 +55,23 @@ passport.use(
       {
         clientID: GITHUB_CLIENT_ID,
         clientSecret: GITHUB_CLIENT_SECRET,
-        scope: ['user:email'],
+        
         callbackURL: "/auth/github/callback",
       },
       async function(accessToken, refreshToken, profile, done) {
         console.log(profile);
        try{
-            const user = await User.findOne({ email: profile.emails[0].value });
-            if(user) return done(null, user);
-           
-            const newUser = new User({
-                name: profile.displayName,
-                email: profile.emails[0].value,
-                // avatar: profile.photos[0].value,
-                isVerified: true,
-                password: "",
-            });
-    
-            await newUser.save();
-            return done(null, newUser);
+         await User.findOrCreate({ githubId: profile.id }, function (err, user) {
+            return done(err, user);
+          });
        }
        catch(error){
             return done(error, null);
        }
       }
-    ));
-    
+    )
+  );
+  
   passport.use(
     new FacebookStrategy(
       {

@@ -49,13 +49,13 @@ app.use(passport.initialize()); // initialize passport
 app.use(passport.session()); // use passport session
 
 
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(path.join(__dirname, '/frontend/dist')));
+// if (process.env.NODE_ENV === 'production') {
+// 	app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
-	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, 'frontend', '/frontend/dist', '/frontend/dist/index.html'));
-	});
-}
+// 	app.get('*', (req, res) => {
+// 		res.sendFile(path.resolve(__dirname, 'frontend', '/frontend/dist', '/frontend/dist/index.html'));
+// 	});
+// }
 
 // if (process.env.NODE_ENV === 'production') {
 // 	// Serve static files from the frontend 'dist' directory

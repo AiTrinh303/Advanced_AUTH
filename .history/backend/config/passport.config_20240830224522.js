@@ -58,29 +58,12 @@ passport.use(
         scope: ['user:email'],
         callbackURL: "/auth/github/callback",
       },
-      async function(accessToken, refreshToken, profile, done) {
-        console.log(profile);
-       try{
-            const user = await User.findOne({ email: profile.emails[0].value });
-            if(user) return done(null, user);
-           
-            const newUser = new User({
-                name: profile.displayName,
-                email: profile.emails[0].value,
-                // avatar: profile.photos[0].value,
-                isVerified: true,
-                password: "",
-            });
-    
-            await newUser.save();
-            return done(null, newUser);
-       }
-       catch(error){
-            return done(error, null);
-       }
+      function(accessToken, refreshToken, profile, done) {
+        return done(null, profile);
       }
-    ));
-    
+    )
+  );
+  
   passport.use(
     new FacebookStrategy(
       {
