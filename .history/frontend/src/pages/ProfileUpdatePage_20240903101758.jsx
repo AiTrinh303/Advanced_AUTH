@@ -1,0 +1,156 @@
+import { motion } from "framer-motion";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthContext";
+import { useContext, useState } from "react";
+import 
+
+const ProfileUpdatePage = () => {
+  const { currentUser, updateUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", e.target.name.value);
+    formData.append("email", e.target.email.value);
+    formData.append("password", e.target.password.value);
+    if (avatar) {
+      formData.append("avatar", avatar);
+    }
+
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/user/update/${currentUser.id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      updateUser(response.data);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      setError(err.response.data.message);
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-md w-full p-8 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-800"
+    >
+      <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-600 text-transparent bg-clip-text">
+        Update Profile
+      </h2>
+
+      <div className="space-y-6">
+        <motion.div
+          className="p-4 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <div className="flex items-center mb-6 space-x-20">
+            <div className="flex justify-center">
+              <img
+                src={avatar ? URL.createObjectURL(avatar) : currentUser.avatar || "placeholder.jpg"}
+                alt="Avatar"
+                className="w-24 h-24 mr-6 rounded-full bg-gray-700"
+              />
+            </div>
+            <UploadWidget
+              uwConfig={{
+                cloudName: "daxnlq46a",
+                uploadPreset: "Ai_Estate",
+                multiple: false,
+                maxImageFileSize: 2000000,
+                folder: "avatars",
+              }}
+              setState={setAvatar}
+            />
+          </div>
+        </motion.div>
+      </div>
+
+      <form onSubmit={handleSubmit}>
+        <div className="space-y-6">
+          <motion.div
+            className="p-4 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <h3 className="text-xl font-semibold text-green-400 mb-3">Profile Information</h3>
+
+            <div className="text-gray-300 mb-4">
+              <label htmlFor="name" className="block mb-2 font-medium">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                defaultValue={currentUser.name}
+                className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+            </div>
+
+            <div className="text-gray-300 mb-4">
+              <label htmlFor="email" className="block mb-2 font-medium">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                defaultValue={currentUser.email}
+                className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+            </div>
+
+            <div className="text-gray-300 mb-4">
+              <label htmlFor="password" className="block mb-2 font-medium">
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mt-4"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
+              font-bold rounded-lg shadow-lg hover:from-green-600 hover:to-emerald-700
+              focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+            >
+              Update
+            </motion.button>
+          </motion.div>
+        </div>
+        {error && <span className="text-red-500">{error}</span>}
+      </form>
+    </motion.div>
+  );
+};
+
+export default ProfileUpdatePage;
