@@ -50,7 +50,7 @@ export const updateUser = async (req, res) => {
                                     { new: true });
 
         
-    const { password: userPassword, ...rest } = updatedUser.toObject();
+    const { password: userPassword, ...rest } = updatedUser; 
     
     updatedUser.isVerified = true;
     await updatedUser.save();

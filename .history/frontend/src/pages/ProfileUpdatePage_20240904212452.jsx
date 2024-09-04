@@ -126,6 +126,7 @@ const ProfileUpdatePage = () => {
 
         {/* Display error messages if there's an error */}
         {error && <div className="text-red-500 mt-4">{error}</div>}
+        {formError && <div className="text-red-500 mt-4">{formError}</div>}
       </form>
     </div>
   );

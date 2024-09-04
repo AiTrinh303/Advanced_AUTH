@@ -9,7 +9,7 @@ const ProfileUpdatePage = () => {
   const { user: currentUser, updateUser, isLoading, error } = useAuthStore();
   const navigate = useNavigate();
   const [avatar, setAvatar] = useState("");
-
+  const [formError, setFormError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -126,6 +126,7 @@ const ProfileUpdatePage = () => {
 
         {/* Display error messages if there's an error */}
         {error && <div className="text-red-500 mt-4">{error}</div>}
+        {formError && <div className="text-red-500 mt-4">{formError}</div>}
       </form>
     </div>
   );

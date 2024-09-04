@@ -63,7 +63,7 @@ const DashboardPage = () => {
 					<p className='text-gray-300'>
 						<span className='font-bold mr-1'>Last Login: </span>
 
-						{formatDate(currentUser.lastLogin)}
+						{formatDate(user.lastLogin)}
 					</p>
 				</motion.div>
 			</div>

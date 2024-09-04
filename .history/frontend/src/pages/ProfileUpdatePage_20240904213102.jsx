@@ -32,10 +32,7 @@ const ProfileUpdatePage = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <form onSubmit={handleSubmit} className="max-w-md w-full p-8 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-800">
-        <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-600 text-transparent bg-clip-text">
-          Update Profile
-        </h2>
+      
 
         {/* Avatar Section */}
         <div className="space-y-6 mb-6">
@@ -64,7 +61,10 @@ const ProfileUpdatePage = () => {
             </div>
           </motion.div>
         </div>
-
+        <form onSubmit={handleSubmit} className="max-w-md w-full p-8 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-800">
+        <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-600 text-transparent bg-clip-text">
+          Update Profile
+        </h2>
         {/* Profile Information Section */}
         <div className="space-y-6">
           <motion.div

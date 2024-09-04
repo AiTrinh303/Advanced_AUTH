@@ -4,7 +4,7 @@ import { useAuthStore } from "../store/authStore";
 import { formatDate } from "../utils/date";
 
 const DashboardPage = () => {
-	const { user: currentUser, updateUser, logout } = useAuthStore();
+	const { user, logout } = useAuthStore();
 
 	const navigate = useNavigate();
 
@@ -32,18 +32,13 @@ const DashboardPage = () => {
 				>
 					<h3 className='text-xl font-semibold text-green-400 mb-3'>Profile Information</h3>
 					<img
-						className="w-24 h-24 rounded-full bg-gray-700 mx-auto mb-4 mt-4"
-						src={currentUser.avatar || "/noavatar.jpg"}
+						className="w-24 h-24 rounded-full bg-gray-700 mr-6"
+						src={user.avatar || "/noavatar.jpg"}
 						alt="User Avatar"
 					/>
 					<p className='text-gray-300'>
-					<span className='font-bold mr-1'>Name: </span> 
-						{currentUser.name}
-					</p>
-					<p className='text-gray-300'>
-					<span className='font-bold mr-1'>Email: </span> 
-						{currentUser.email}
-					</p>
+						Name: {user.name}</p>
+					<p className='text-gray-300'>Email: {user.email}</p>
 				</motion.div>
 				<motion.div
 					className='p-4 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700'
@@ -53,17 +48,17 @@ const DashboardPage = () => {
 				>
 					<h3 className='text-xl font-semibold text-green-400 mb-3'>Account Activity</h3>
 					<p className='text-gray-300'>
-						<span className='font-bold  mr-1'>Joined: </span>
-						{new Date(currentUser.createdAt).toLocaleDateString("en-US", {
+						<span className='font-bold'>Joined: </span>
+						{new Date(user.createdAt).toLocaleDateString("en-US", {
 							year: "numeric",
 							month: "long",
 							day: "numeric",
 						})}
 					</p>
 					<p className='text-gray-300'>
-						<span className='font-bold mr-1'>Last Login: </span>
+						<span className='font-bold'>Last Login: </span>
 
-						{formatDate(currentUser.lastLogin)}
+						{formatDate(user.lastLogin)}
 					</p>
 				</motion.div>
 			</div>

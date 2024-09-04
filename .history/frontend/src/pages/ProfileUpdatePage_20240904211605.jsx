@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import UploadWidget from "../components/UploadWidget";
 
 const ProfileUpdatePage = () => {
@@ -9,7 +9,7 @@ const ProfileUpdatePage = () => {
   const { user: currentUser, updateUser, isLoading, error } = useAuthStore();
   const navigate = useNavigate();
   const [avatar, setAvatar] = useState("");
-
+  const [formError, setFormError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -124,7 +124,7 @@ const ProfileUpdatePage = () => {
           </motion.button>
         </motion.div>
 
-        {/* Display error messages if there's an error */}
+        {/* Display error message if there's an error */}
         {error && <div className="text-red-500 mt-4">{error}</div>}
       </form>
     </div>

@@ -19,7 +19,7 @@ export const useAuthStore = create((set) => ({
         try {
             const response = await axios.put(`${API_URL_2}/update/${userData.id}`, userData);
 			
-            set({ user: response.data._doc || response.data, isLoading: false, isAuthenticated: true });
+            set({ user: response.data._doc ? response.data._doc : response.data, isLoading: false, isAuthenticated: true });
         } 
 		catch (error) {
             set({

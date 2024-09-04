@@ -54,7 +54,7 @@ const DashboardPage = () => {
 					<h3 className='text-xl font-semibold text-green-400 mb-3'>Account Activity</h3>
 					<p className='text-gray-300'>
 						<span className='font-bold  mr-1'>Joined: </span>
-						{new Date(currentUser.createdAt).toLocaleDateString("en-US", {
+						{new Date(user.createdAt).toLocaleDateString("en-US", {
 							year: "numeric",
 							month: "long",
 							day: "numeric",
@@ -63,7 +63,7 @@ const DashboardPage = () => {
 					<p className='text-gray-300'>
 						<span className='font-bold mr-1'>Last Login: </span>
 
-						{formatDate(currentUser.lastLogin)}
+						{formatDate(user.lastLogin)}
 					</p>
 				</motion.div>
 			</div>

@@ -44,13 +44,13 @@ export const updateUser = async (req, res) => {
                                     { $set: {
                                         ...inputs,
                                         ...(updatedPassword && { password: updatedPassword }), // Only include if password was updated
-                                        ...(avatar && { avatar }),// Only include if avatar was provided
+                                        ...(avatar && { avatar }),
                                       }
                                     },
                                     { new: true });
 
         
-    const { password: userPassword, ...rest } = updatedUser.toObject();
+    const { password: userPassword, ...rest } = updatedUser; 
     
     updatedUser.isVerified = true;
     await updatedUser.save();

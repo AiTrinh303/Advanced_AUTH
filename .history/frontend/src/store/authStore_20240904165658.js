@@ -17,9 +17,9 @@ export const useAuthStore = create((set) => ({
 	updateUser: async (userData) => {
         set({ isLoading: true, error: null });
         try {
-            const response = await axios.put(`${API_URL_2}/update/${userData.id}`, userData);
+            const response = await axios.put(`${/update/${userData.id}`, userData);
 			
-            set({ user: response.data._doc || response.data, isLoading: false, isAuthenticated: true });
+            set({ user: response.data._doc ? response.data._doc : response.data, isLoading: false, isAuthenticated: true });
         } 
 		catch (error) {
             set({
@@ -137,3 +137,134 @@ export const useAuthStore = create((set) => ({
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+
+// const AuthComponent = () => {
+//   const [user, setUser] = useState(null);
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
+//   const [error, setError] = useState(null);
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [message, setMessage] = useState(null);
+
+//   const API_URL = process.env.NODE_ENV === "development" ? "http://localhost:5000/api/auth" : "/api/auth";
+//   axios.defaults.withCredentials = true;
+
+//   const signup = async (email, password, name) => {
+//     setIsLoading(true);
+//     setError(null);
+//     try {
+//       const response = await axios.post(`${API_URL}/signup`, { email, password, name });
+//       setUser(response.data.user);
+//       setIsAuthenticated(true);
+//     } catch (error) {
+//       setError(error.response.data.message || "Error signing up");
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+
+//   const login = async (email, password) => {
+//     setIsLoading(true);
+//     setError(null);
+//     try {
+//       const response = await axios.post(`${API_URL}/login`, { email, password });
+//       setUser(response.data.user);
+//       setIsAuthenticated(true);
+//     } catch (error) {
+//       setError(error.response?.data?.message || "Error logging in");
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+
+
+
+//   return (
+//     <div>
+     
+//     </div>
+//   );
+// };
+
+
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+
+// const AuthComponent = () => {
+//   const [user, setUser] = useState(null);
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
+//   const [error, setError] = useState(null);
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [message, setMessage] = useState(null);
+
+//   const API_URL = process.env.NODE_ENV === "development" ? "http://localhost:5000/api/auth" : "/api/auth";
+//   axios.defaults.withCredentials = true;
+
+//   const signup = async (email, password, name) => {
+//     setIsLoading(true);
+//     setError(null);
+//     try {
+//       const response = await axios.post(`${API_URL}/signup`, { email, password, name });
+//       setUser(response.data.user);
+//       setIsAuthenticated(true);
+//     } catch (error) {
+//       setError(error.response.data.message || "Error signing up");
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+
+//   const login = async (email, password) => {
+//     setIsLoading(true);
+//     setError(null);
+//     try {
+//       const response = await axios.post(`${API_URL}/login`, { email, password });
+//       setUser(response.data.user);
+//       setIsAuthenticated(true);
+//     } catch (error) {
+//       setError(error.response?.data?.message || "Error logging in");
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+
+
+
+//   return (
+//     <div>
+     
+//     </div>
+//   );
+// };
