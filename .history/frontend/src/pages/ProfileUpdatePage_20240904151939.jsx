@@ -47,7 +47,7 @@ const ProfileUpdatePage = () => {
             <div className="flex items-center">
               <img
                 className="w-24 h-24 rounded-full bg-gray-700 mr-6"
-                src={currentUser.avatar || "/noavatar.jpg"}
+                src={|| currentUser.avatar || "/noavatar.jpg"}
                 alt="User Avatar"
               />
               <UploadWidget

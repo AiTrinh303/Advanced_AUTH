@@ -46,7 +46,7 @@ export const updateUser = async (req, res) => {
                                         ...(updatedPassword && { password: updatedPassword }),
                                         ...(avatar && { avatar }),
                                       }
-                                    },
+                                     },
                                     { new: true });
 
         

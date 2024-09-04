@@ -8,7 +8,7 @@ const ProfileUpdatePage = () => {
   // Get the current user and updateUser function from the Zustand store
   const { user: currentUser, updateUser, isLoading, error } = useAuthStore();
   const navigate = useNavigate();
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +47,7 @@ const ProfileUpdatePage = () => {
             <div className="flex items-center">
               <img
                 className="w-24 h-24 rounded-full bg-gray-700 mr-6"
-                src={currentUser.avatar || "/noavatar.jpg"}
+                src={avatar[0] || currentUser.avatar || "/noavatar.jpg"}
                 alt="User Avatar"
               />
               <UploadWidget
@@ -130,4 +130,3 @@ const ProfileUpdatePage = () => {
 };
 
 export default ProfileUpdatePage;
-
