@@ -31,49 +31,14 @@ const ProfileUpdatePage = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen space-y-1">        
-        {/* <motion.div
-            className="p-4 bg-gray-900 bg-opacity-50 rounded-lg border border-gray-700"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-        <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-500 to-emerald-600 text-transparent bg-clip-text">
+    <div className="flex flex-col justify-center items-center min-h-screen space-y-8">
+        <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-600 text-transparent bg-clip-text">
           Update Profile
         </h2>
-        </motion.div> */}
-        {/* Avatar Section */}
-        <div className="max-w-md w-full p-8 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-800">
-          <motion.div
-            className="p-4 bg-gray-900 bg-opacity-50 rounded-lg border border-gray-700"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <h3 className="text-xl font-semibold text-green-400 mb-3">Avatar</h3>
-            <div className="flex items-center">
-              <img
-                className="w-24 h-24 rounded-full bg-gray-700 mr-6"
-                src={currentUser.avatar || "/noavatar.jpg"}
-                alt="User Avatar"
-              />
-              <UploadWidget
-                uwConfig={{
-                  cloudName: "daxnlq46a",
-                  uploadPreset: "Advanced_Auth",
-                  multiple: false,
-                  maxImageFileSize: 2000000,
-                  folder: "avatars",
-                }}
-                setAvatar={setAvatar}
-              />
-            </div>
-          </motion.div>
-        </div>
 
       <form onSubmit={handleSubmit} className="max-w-md w-full p-8 bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-800">
         {/* Profile Information Section */}
-       
+        <div className="space-y-6">
           <motion.div
             className="p-4 bg-gray-800 bg-opacity-50 rounded-lg border border-gray-700"
             initial={{ opacity: 0, y: 20 }}
@@ -112,6 +77,7 @@ const ProfileUpdatePage = () => {
               />
             </div>
           </motion.div>
+        </div>
 
         {/* Update Button Section */}
         <motion.div
@@ -133,7 +99,9 @@ const ProfileUpdatePage = () => {
         {/* Display error messages if there's an error */}
         {error && <div className="text-red-500 mt-4">{error}</div>}
       </form>
-     
+
+
+        
     </div>
   );
 };

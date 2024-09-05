@@ -133,7 +133,9 @@ const ProfileUpdatePage = () => {
         {/* Display error messages if there's an error */}
         {error && <div className="text-red-500 mt-4">{error}</div>}
       </form>
-     
+
+
+        
     </div>
   );
 };

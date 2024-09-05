@@ -1,9 +1,10 @@
+import { set } from "mongoose";
 import { createContext, useEffect, useState } from "react";
 
 // Create a context to manage the script loading state
 const CloudinaryScriptContext = createContext();
 
-function UploadWidget({ uwConfig, setAvatar }) {
+function UploadWidget({ uwConfig, setState, setAvatar }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {

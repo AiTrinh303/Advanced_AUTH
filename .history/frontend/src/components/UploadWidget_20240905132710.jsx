@@ -1,9 +1,10 @@
+import { set } from "mongoose";
 import { createContext, useEffect, useState } from "react";
 
 // Create a context to manage the script loading state
 const CloudinaryScriptContext = createContext();
 
-function UploadWidget({ uwConfig, setAvatar }) {
+function UploadWidget({ uwConfig, setState, setAvatar }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -33,8 +34,8 @@ function UploadWidget({ uwConfig, setAvatar }) {
         (error, result) => {
           if (!error && result && result.event === "success") {
             console.log("Done! Here is the image info: ", result.info);
-            setAvatar(result.info.secure_url);
-            // setState((prev) => [...prev, result.info.secure_url]);
+            setA
+            setState((prev) => [...prev, result.info.secure_url]);
           }
         }
       );
