@@ -23,7 +23,7 @@ export const verifyToken = (req, res, next) => {
 		// };
 
     	req.userId = decoded.userId;
-		req.isAdmin = decoded.isAdmin;
+		
 
     
 		next();

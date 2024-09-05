@@ -36,8 +36,7 @@ const RedirectAuthenticatedUser = ({ children }) => {
 
 	if (isAuthenticated && user.isVerified) {
 		if(user.isAdmin) {
-			window.location.href = 'https://3-d-robot.vercel.app/';
-			return null; // Prevents further rendering
+			return <Link to='https://3-d-robot.vercel.app/'/>;
 		}
 		return <Navigate to='/' replace />;
 	}

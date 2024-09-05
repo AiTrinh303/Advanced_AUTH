@@ -149,7 +149,7 @@ export const login = async (req, res) => {
 			user: {
 				...user._doc,
 				password: undefined,
-			},
+			,
 		});
 		console.log("User logged in successfully");
 	

@@ -17,13 +17,12 @@ export const verifyToken = (req, res, next) => {
 
 		if (!decoded) return res.status(401).json({ success: false, message: "Unauthorized - invalid token" });
 
-		// req.user = {
-		// 	id: decoded.userId,
-		// 	isAdmin: decoded.isAdmin,
-		// };
+		req.user = {
+			id: decoded.userId,
+			isAdmin: decoded.isAdmin,
+		};
 
-    	req.userId = decoded.userId;
-		req.isAdmin = decoded.isAdmin;
+    	// req.userId = decoded.userId;
 
     
 		next();

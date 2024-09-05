@@ -22,8 +22,7 @@ export const verifyToken = (req, res, next) => {
 		// 	isAdmin: decoded.isAdmin,
 		// };
 
-    	req.userId = decoded.userId;
-		req.isAdmin = decoded.isAdmin;
+    	// req.userId = decoded.userId;
 
     
 		next();

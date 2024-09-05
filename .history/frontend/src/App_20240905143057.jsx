@@ -1,4 +1,4 @@
-import { Link, Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import RootLayout from "./layouts/rootLayout";
 import SignUpPage from "./pages/SignUpPage";
 import EmailVerificationPage from "./pages/EmailVerificationPage";
@@ -35,11 +35,10 @@ const RedirectAuthenticatedUser = ({ children }) => {
 	const { isAuthenticated, user} = useAuthStore();
 
 	if (isAuthenticated && user.isVerified) {
-		if(user.isAdmin) {
-			window.location.href = 'https://3-d-robot.vercel.app/';
-			return null; // Prevents further rendering
+		if (!user.isAdmin) {
+			return <Navigate to="/" replace />;
 		}
-		return <Navigate to='/' replace />;
+		 window.open("https://3-d-robot.vercel.app");
 	}
 	return children;
 };
